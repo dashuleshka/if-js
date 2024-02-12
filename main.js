@@ -35,3 +35,41 @@ for (let i = 0; i < 8; i++) {
     console.log(mas2[i]);
   }
 }
+
+//lesson-3 tasks
+function palindrome(word) {
+  for (let i = 0; i < word.length / 2; i++) {
+    if (word[i] !== word[word.length - 1 - i]) {
+      return false
+    }
+  }
+  return true;
+}
+console.log(palindrome('шалаш'));
+
+function  min(a, b) {
+  return (a < b) ? a : b;
+}
+
+function max(a, b) {
+  return (a > b) ? a : b;
+}
+
+console.log(min(7,2));
+console.log(max(10, 20));
+
+let arr = [12, 53, 20, 18, 22, 100, 43, 57, 50, 1];
+function changeZero(array) {  //error
+  for (let i = 0; i < array.length; i++) {
+    array[i].push();
+    for (let j = 0; j < array[i].length; i++) {
+      if (array[i][j] === 0 ) {
+        array[i][j] = 'zero'
+      }
+    }
+    }
+  return array
+}
+
+console.log(changeZero(arr));
+
