@@ -58,18 +58,48 @@ function max(a, b) {
 console.log(min(7,2));
 console.log(max(10, 20));
 
-let arr = [12, 53, 20, 18, 22, 100, 43, 57, 50, 1];
-function changeZero(array) {  //error
-  for (let i = 0; i < array.length; i++) {
-    array[i].push();
-    for (let j = 0; j < array[i].length; i++) {
-      if (array[i][j] === 0 ) {
-        array[i][j] = 'zero'
-      }
+//lesson-4
+function sum(a) {
+  return function (b) {
+    return (a + b);
+  }
+}
+console.log(sum(5)(2));
+
+//????????????????????
+const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+const text1 = document.getElementById('text1');
+const text2 = document.getElementById('text2');
+const text3 = document.getElementById('text3');
+
+for (let i = 0; i  === 0; i++) {
+  text1.addEventListener('click', (event) => {
+      event.target.style.color = colors[i];
+      i += 1;
+    if (i === colors.length) {
+      i = 0;
     }
-    }
-  return array
+  })
 }
 
-console.log(changeZero(arr));
+for (let i = 0; i === 0; i++) {
+  text2.addEventListener('click', (event) => {
+    event.target.style.color = colors[i];
+    i += 1;
+    if (i === colors.length) {
+      i = 0;
+    }
+  })
+}
+
+for (let i = 0; i === 0; i++) {
+  text3.addEventListener('click', (event) => {
+    event.target.style.color = colors[i];
+    i += 1;
+    if (i === colors.length) {
+      i = 0;
+    }
+  })
+}
+
 
