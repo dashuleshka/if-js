@@ -161,3 +161,81 @@ const hotels = [
         country: 'Germany',
     },
 ];
+
+const strOverlap = (hotels, searchValue) => {
+    const findedHotels = [];
+
+    hotels.forEach(({country, city, name}) => {
+        if (country.includes(searchValue) || city.includes(searchValue) || name.includes(searchValue)) {
+            findedHotels.push(`${country}, ${city}, ${name}`);
+        }
+    })
+
+    return findedHotels;
+};
+
+
+console.log(strOverlap(hotels, 'UK'));
+
+const name = 'Dasha';
+const obj = {};
+obj[name] = ['5'];
+console.log(obj);
+
+//Сопоставьте страны с городами из массива
+const countryConnection = (data) => {
+    const obj = {};
+    data.forEach((hotel) => {
+        if (hotel.country) {
+            if (!obj[hotel.country]) {
+                obj[hotel.country] = [hotel.city];
+            }
+        }
+            else {
+            obj[hotel.country] = obj[hotel.country].push(hotel.city);
+            }
+    });
+    return obj;
+};
+
+console.log(countryConnection(hotels));
+
+//Calendar test
+const daysInMonth = 30;
+const daysInWeek = 7;
+const dayOfWeek = 2; // в моем примере понедельник равен 0. У вас может отличаться
+const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
+
+function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
+    const calendarMas = [];
+    let counter = 1;
+    for (let i = 0; i < 5; i++) {
+        calendarMas[i] = new Array();
+
+        if (i === 0) {
+            for (let j = dayOfWeek - 1; j >= 0; j--) {
+                calendarMas[i][j] = daysInMonth;
+                daysInMonth--;
+            }
+
+            for (let j = dayOfWeek; j < 7; j++) {
+                calendarMas[i][j] = counter;
+                counter++;
+            }
+        }
+        else {
+            for (let j = 0; j < 7; j++) {
+                if (counter > 30) {
+                    counter = 1;
+                    calendarMas[i][j] = counter;
+                }
+                calendarMas[i][j] = counter;
+                counter++;
+            }
+        }
+
+    }
+    return calendarMas;
+}
+
+console.log(getCalendarMonth(daysInMonth, daysInWeek,dayOfWeek));
