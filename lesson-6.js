@@ -204,7 +204,6 @@ console.log(countryConnection(hotels));
 const daysInMonth = 30;
 const daysInWeek = 7;
 const dayOfWeek = 2; // в моем примере понедельник равен 0. У вас может отличаться
-const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
 
 function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
     const calendarMas = [];
