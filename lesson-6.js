@@ -204,41 +204,41 @@ const countriesRecord2 = (data) =>
 console.log(countriesRecord2(hotels));
 
 //Calendar test
-const daysInMonth = 30;
-const daysInWeek = 7;
-const dayOfWeek = 4;
-
-function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
-  const calendarMas = [];
-  let counter = 1;
-
-  for (let i = 0; i < 5; i++) {
-    calendarMas[i] = new Array();
-
-    if (i === 0) {
-      for (let j = dayOfWeek - 1; j >= 0; j--) {
-        calendarMas[i][j] = daysInMonth;
-        daysInMonth--;
-      }
-
-      for (let j = dayOfWeek; j < 7; j++) {
-        calendarMas[i][j] = counter;
-        counter++;
-      }
-    } else {
-      for (let j = 0; j < 7; j++) {
-        if (counter > 30) {
-          counter = 1;
-          calendarMas[i][j] = counter;
-        }
-
-        calendarMas[i][j] = counter;
-        counter++;
-      }
-    }
-  }
-
-  return calendarMas;
-}
-
-console.log(getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek));
+// const daysInMonth = 30;
+// const daysInWeek = 7;
+// const dayOfWeek = 4;
+//
+// function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
+//   const calendarMas = [];
+//   let counter = 1;
+//
+//   for (let i = 0; i < 5; i++) {
+//     calendarMas[i] = new Array();
+//
+//     if (i === 0) {
+//       for (let j = dayOfWeek - 1; j >= 0; j--) {
+//         calendarMas[i][j] = daysInMonth;
+//         daysInMonth--;
+//       }
+//
+//       for (let j = dayOfWeek; j < 7; j++) {
+//         calendarMas[i][j] = counter;
+//         counter++;
+//       }
+//     } else {
+//       for (let j = 0; j < 7; j++) {
+//         if (counter > 30) {
+//           counter = 1;
+//           calendarMas[i][j] = counter;
+//         }
+//
+//         calendarMas[i][j] = counter;
+//         counter++;
+//       }
+//     }
+//   }
+//
+//   return calendarMas;
+// }
+//
+// console.log(getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek));
