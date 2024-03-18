@@ -77,7 +77,7 @@ console.log(deepEqual(obj5, obj6));
 //Calendar Month
 const daysInMonth = 30;
 const daysInWeek = 7;
-const dayOfWeek = 4;
+const dayOfWeek = 2;
 
 function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
     const calendarMas = [];
@@ -88,22 +88,36 @@ function getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek) {
 
         if (i === 0) {
             for (let j = dayOfWeek - 1; j >= 0; j--) {
-                calendarMas[i][j] = daysInMonth;
+                const calendarObject = {dayOfMonth: null, notCurrentMonth: null, selectedDay: null};
+                calendarObject.dayOfMonth = daysInMonth;
+                calendarObject.notCurrentMonth = false;
+                calendarMas[i][j] = calendarObject;
                 daysInMonth--;
             }
 
             for (let j = dayOfWeek; j < 7; j++) {
-                calendarMas[i][j] = counter;
+                // calendarMas[i][j] = counter;
+                const calendarObject = {dayOfMonth: null, notCurrentMonth: null, selectedDay: null};
+                calendarObject.dayOfMonth = counter;
+                calendarObject.notCurrentMonth = true;
+                calendarMas[i][j] = calendarObject;
                 counter++;
             }
         } else {
             for (let j = 0; j < 7; j++) {
+                const calendarObject = {dayOfMonth: null, notCurrentMonth: null, selectedDay: null};
                 if (counter > 30) {
                     counter = 1;
-                    calendarMas[i][j] = counter;
+                    calendarObject.dayOfMonth = counter;
+                    calendarObject.notCurrentMonth = false;
+                    calendarMas[i][j] = calendarObject;
                 }
 
-                calendarMas[i][j] = counter;
+                else {
+                    calendarObject.dayOfMonth = counter;
+                    calendarObject.notCurrentMonth = true;
+                    calendarMas[i][j] = calendarObject;
+                }
                 counter++;
             }
         }
