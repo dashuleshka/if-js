@@ -57,10 +57,3 @@ const changeStyle = id => event => {
 };
 
 const text1 = document.getElementById("text1");
-const changeStyle2 = id => text1.addEventListener("click", (event) => {
-    event.target.style.color = colors.next(id).value;
-}
-
-
-// const text2 = document.getElementById("text2");
-// const text3 = document.getElementById("text3");
