@@ -1,59 +1,43 @@
-// const colors = {
-//     data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
-//     counter: 0,
-//     endIndex: 4,
-//     [Symbol.iterator]() {
-//         return this;
-//     },
-//     next() {
-//         if (this.current === undefined) {
-//             this.current = this.data[this.counter];
-//         }
-//         if (this.current > this.endIndex) {
-//             return {
-//                 done: true,
-//             };
-//         }
-//         return {
-//             done: false,
-//             value: this.counter++,
-//         };
-//     },
-// };
-
-const colors = {
-    data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+const changeColor = () => {
+  const iteratorOptions = {
+    colors: ["magenta", "cyan", "firebrick", "springgreen", "skyblue"],
     from: 0,
     to: 4,
     [Symbol.iterator]() {
-        return this;
+      return this;
     },
     next() {
-        if (this.current === undefined) {
-            this.current = this.from;
-        }
+      if (this.current === undefined) {
+        this.current = this.from;
+      }
 
-        if (this.current > this.to) {
-            return {
-                done: true,
-            };
-        }
+      if (this.current <= this.to) {
+        return {
+          done: false,
+          value: this.colors[this.current++],
+        };
+      }
+
+      if (this.current > this.to) {
+        this.current = 0;
 
         return {
-            done: false,
-            value: this.data[this.current++],
+          done: true,
+          value: this.colors[this.current],
         };
+      }
     },
-};
+  };
 
-console.log(colors);
-for (const value of colors) {
-    console.log(value);
-
-}
-
-const changeStyle = id => event => {
-    event.target.style.color = colors.next(id).value;
+  return (event) => {
+    event.target.style.color = iteratorOptions.next().value;
+  };
 };
 
 const text1 = document.getElementById("text1");
+const text2 = document.getElementById("text2");
+const text3 = document.getElementById("text3");
+
+text1.addEventListener("click", changeColor());
+text2.addEventListener("click", changeColor());
+text3.addEventListener("click", changeColor());
