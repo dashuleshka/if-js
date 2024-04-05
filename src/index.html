@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Triphouse</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="main-block">
+      <div class="container">
+        <header class="main-block__header">
+          <div class="header__logo">
+            <img src="./assets/images/logo.svg" alt="logo" />
+          </div>
+          <nav class="header__navigation-buttons">
+            <div class="navigation-buttons__links-block">
+              <a class="navigation-buttons__links-block--header-links" href=""
+                >Stays</a
+              >
+              <a class="navigation-buttons__links-block--header-links" href=""
+                >Attractions</a
+              >
+            </div>
+            <div class="navigation-buttons__buttons-block">
+              <button class="navigation-buttons__buttons-block--theme-button">
+                <img src="./assets/images/theme.svg" alt="theme" />
+              </button>
+              <button class="navigation-buttons__buttons-block--account-button">
+                <img src="./assets/images/account.svg" alt="account" />
+              </button>
+              <button class="navigation-buttons__buttons-block--menu-button">
+                <img src="./assets/images/menu.svg" alt="menu" />
+              </button>
+            </div>
+          </nav>
+        </header>
+        <h1 class="main-block__main-heading">
+          Discover stays<br />
+          to live, work or just relax
+        </h1>
+        <form action="" class="main-block__top-section-form">
+          <div class="top-section-form__destination">
+            <span class="top-section-form__destination--loop-icon">
+              <img src="./assets/images/search.svg" alt="searcher" />
+            </span>
+            <input
+              class="form-input input-destination-desktop"
+              id="country-desktop"
+              type="text"
+              name="New York"
+              autocomplete="off"
+              placeholder="New York"
+            />
+            <label class="form-label" for="country-desktop">
+              Your destination or hotel name
+            </label>
+            <input
+              class="form-input input-destination-mobile"
+              id="country-mobile"
+              type="text"
+              name="destination"
+              autocomplete="off"
+              placeholder="Your destination or hotel name"
+            />
+          </div>
+          <div class="top-section-form__date-desktop">
+            <input
+              class="form-input"
+              id="booking-date"
+              type="text"
+              name="day"
+              autocomplete="off"
+              placeholder="Tue 15 Sept — Sat 19 Sept"
+            />
+            <label class="form-label" for="booking-date">
+              Check-in — Check-out
+            </label>
+          </div>
+          <div class="top-section-form__options-desktop">
+            <input
+              class="form-input"
+              id="booking-positions"
+              type="text"
+              name="person"
+              autocomplete="off"
+              placeholder="2 Adults — 0 Children — 1 Room"
+            />
+            <label for="booking-positions"></label>
+          </div>
+          <div class="top-section-form__date-mobile">
+            <div class="date-mobile__date-input-wrapper">
+              <label for="check-in">Check-in date</label>
+              <input
+                class="date-mobile__date-input-wrapper--check-in"
+                type="text"
+                name="check-in"
+                autocomplete="off"
+                id="check-in"
+                placeholder="Tue 15 Sept 2020"
+              />
+            </div>
+            <div class="date-mobile__date-input-wrapper">
+              <label for="check-out">Check-out date</label>
+              <input
+                class="date-mobile__date-input-wrapper--check-out"
+                type="text"
+                name="check-out"
+                id="check-out"
+                autocomplete="off"
+                placeholder="Sat 19 Sept 2020"
+              />
+            </div>
+          </div>
+          <div class="top-section-form__options-mobile">
+            <div class="options-mobile__options-input-wrapper">
+              <label for="adults-stayed">Adults</label>
+              <input
+                class="options-mobile__options-input-wrapper--adults-input"
+                type="text"
+                name="adults"
+                id="adults-stayed"
+                autocomplete="off"
+                placeholder="2"
+              />
+            </div>
+            <div class="options-mobile__options-input-wrapper">
+              <label for="children-stayed">Children</label>
+              <input
+                class="options-mobile__options-input-wrapper--children-input"
+                type="text"
+                name="children"
+                id="children-stayed"
+                autocomplete="off"
+                placeholder="0"
+              />
+            </div>
+            <div class="options-mobile__options-input-wrapper">
+              <label for="rooms-booked">Rooms</label>
+              <input
+                class="options-mobile__options-input-wrapper--rooms-input"
+                type="text"
+                name="rooms"
+                id="rooms-booked"
+                autocomplete="off"
+                placeholder="1"
+              />
+            </div>
+          </div>
+          <button class="top-section-form__button">Search</button>
+        </form>
+        <div class="main-block__game-stores">
+          <a
+            target="_blank"
+            href="https://play.google.com/store/games?hl=ru&gl=US&pli=1"
+          >
+            <svg class="main-block__game-stores--google-link">
+              <use href="./assets/images/spritePlatformsGame.svg#google" />
+            </svg>
+          </a>
+          <a target="_blank" href="https://www.apple.com/by/app-store/">
+            <svg class="main-block__game-stores--appstore-link">
+              <use href="./assets/images/spritePlatformsGame.svg#appstore" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container offer-block">
+      <h2 class="offer-block__heading">What do we offer</h2>
+      <div class="offer-block__content">
+        <div class="offer-block__item col-md-3">
+          <div class="offer-item__img-wrapper">
+            <svg>
+              <use href="./assets/images/spriteOffer.svg#support" />
+            </svg>
+          </div>
+          <span class="offer-block__item--text">Support 24/7</span>
+        </div>
+        <div class="offer-block__item col-md-3">
+          <div class="offer-item__img-wrapper">
+            <svg>
+              <use href="./assets/images/spriteOffer.svg#communicate" />
+            </svg>
+          </div>
+          <span class="offer-block__item--text">Communicate directly</span>
+        </div>
+        <div class="offer-block__item col-md-3">
+          <div class="offer-item__img-wrapper">
+            <svg>
+              <use href="./assets/images/spriteOffer.svg#gadget" />
+            </svg>
+          </div>
+          <span class="offer-block__item--text">Book online</span>
+        </div>
+        <div class="offer-block__item col-md-3">
+          <div class="offer-item__img-wrapper">
+            <svg>
+              <use href="./assets/images/spriteOffer.svg#like" />
+            </svg>
+          </div>
+          <span class="offer-block__item--text">Real guest reviews</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotels-block">
+      <div class="container hotels-block__guests-loves-padding">
+        <h2 class="hotels-block__heading">Homes guests loves</h2>
+        <div class="hotels-block__content">
+          <div class="hotels-block__item">
+            <div>
+              <img
+                src="assets/images/hotelLeopold.png"
+                alt="Hotel Leopold image"
+              />
+            </div>
+            <span class="hotels-block__item--typography-subtitle">
+              Hotel Leopold</span
+            >
+            <span class="hotels-block__item--location"
+              >Saint Petersburg, Russia</span
+            >
+          </div>
+          <div class="hotels-block__item">
+            <div>
+              <img
+                src="assets/images/apartmentSunshine.png"
+                alt="Apartment Sunshine image"
+                class="typography-subtitle"
+              />
+            </div>
+            <span class="hotels-block__item--typography-subtitle"
+              >Apartment Sunshine</span
+            >
+            <span class="hotels-block__item--location"
+              >Santa Cruz de Tenerife,<br />
+              Spain</span
+            >
+          </div>
+          <div class="hotels-block__item">
+            <div>
+              <img
+                src="assets/images/villaKunerad.png"
+                alt="Villa Kunerad image"
+              />
+            </div>
+            <span class="hotels-block__item--typography-subtitle"
+              >Villa Kunerad</span
+            >
+            <span class="hotels-block__item--location"
+              >Vysokie Tatry, Slowakia</span
+            >
+          </div>
+          <div class="hotels-block__item">
+            <div>
+              <img
+                src="assets/images/hostelFriendship.png"
+                alt="Hostel Friendship image"
+              />
+            </div>
+            <span class="hotels-block__item--typography-subtitle"
+              >Hostel Friendship</span
+            >
+            <span class="hotels-block__item--location">Berlin, Germany</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="destinations-block">
+      <div class="container destination-padding">
+        <h2 class="destinations-block__heading">The best destinations</h2>
+        <div class="destinations-block__buttons">
+          <button>Regions</button>
+          <button>Cities</button>
+          <button>
+            <span class="buttons-destinations__text--desktop"
+              >Places of interest</span
+            >
+            <span class="buttons-destinations__text--mobile">Places</span>
+          </button>
+        </div>
+        <section class="destinations-block__content">
+          <div class="destinations-content__item">
+            <div class="destination-img-wrapper">
+              <img src="./assets/images/maldives.png" alt="Maldives" />
+              <button class="destination-item-button">Book now</button>
+            </div>
+            <span class="destinations-item__typography-subtitle">Maldives</span>
+          </div>
+          <div class="destinations-content__item">
+            <div class="destination-img-wrapper">
+              <img src="./assets/images/spain.png" alt="Spain" />
+              <button class="destination-item-button">Book now</button>
+            </div>
+            <span class="destinations-item__typography-subtitle">Spain</span>
+          </div>
+          <div class="destinations-content__item">
+            <div class="destination-img-wrapper">
+              <img src="./assets/images/norway.png" alt="Norway" />
+              <button class="destination-item-button">Book now</button>
+            </div>
+            <span class="destinations-item__typography-subtitle">Norway</span>
+          </div>
+          <div class="destinations-content__item">
+            <div class="destination-img-wrapper">
+              <img src="./assets/images/island.png" alt="Island" />
+              <button class="destination-item-button">Book now</button>
+            </div>
+            <span class="destinations-item__typography-subtitle">Island</span>
+          </div>
+        </section>
+        <div class="destinations-block__arrow-img">
+          <img src="./assets/images/arrow-1.svg" alt="switch" />
+        </div>
+      </div>
+    </div>
+
+    <div class="sign-up-block-desktop">
+      <div class="container sign-up-container">
+        <section class="sign-up-content">
+          <div>
+            <svg class="sign-up-content__user-icon">
+              <use href="./assets/images/spriteOffer.svg#sign-up" />
+            </svg>
+          </div>
+          <div>
+            <svg class="sign-up-content__logo-mobile">
+              <use href="./assets/images/spriteOffer.svg#logoSignUp" />
+            </svg>
+          </div>
+          <div class="sign-up-content__texting">
+            <span
+              class="sign-declaration-desktop sign-up-content__texting--declaration-desktop"
+            >
+              Sign up and get 20% off your first booking
+            </span>
+            <span class="sign-up-content__texting--declaration-mobile">
+              Sign up in the app and get 20% <br />
+              off your first booking
+            </span>
+            <button>Sign up</button>
+          </div>
+          <a class="sign-up-content__link">Install</a>
+          <svg class="sign-up-content__close-icon">
+            <use href="./assets/images/spriteOffer.svg#close" />
+          </svg>
+        </section>
+      </div>
+    </div>
+
+    <div class="reviews-block">
+      <div class="container">
+        <h2 class="reviews-block__heading">Guests reviews</h2>
+        <h2 class="reviews-block__heading-mobile">Reviews</h2>
+        <div class="reviews-block__content">
+          <div class="reviews-item">
+            <div class="reviews-item__img">
+              <img
+                src="./assets/images/ubudBali.png"
+                alt="Ubud Bali Resort&SPA"
+              />
+              <div class="reviews-item__img--price">From 250 USD</div>
+            </div>
+            <section class="reviews-item__info">
+              <div class="reviews-wrap-location-marks">
+                <div class="reviews-denotations-container">
+                  <span class="reviews-heading-denotation"
+                    >Ubud Bali Resort&SPA</span
+                  >
+                  <span class="reviews-location-denotation"
+                    >Bali, Indonesia</span
+                  >
+                </div>
+                <aside class="reviews-wrap-location-marks__marks">
+                  <button class="reviews-wrap-location-marks__marks--button">
+                    9,4
+                  </button>
+                  <span class="reviews-wrap-location-marks__marks--amount"
+                    >1324 reviews</span
+                  >
+                </aside>
+              </div>
+              <div class="personal-information">
+                <svg>
+                  <use href="./assets/images/spriteOffer.svg#reviews-account" />
+                </svg>
+                <div class="personal-information__reviewers-data">
+                  <span
+                    class="reviewers-name personal-information__reviewers-data--name"
+                    >Hanna Ivanova</span
+                  >
+                  <span
+                    class="reviewers-country personal-information__reviewers-data--country"
+                    ><svg
+                      id="ukraine-flag"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="83"
+                      height="21"
+                      viewBox="0 0 1200 800"
+                    >
+                      <rect width="1200" height="800" fill="#0057B7" />
+                      <rect width="1200" height="400" y="400" fill="#FFD700" />
+                    </svg>
+                    Ukraine</span
+                  >
+                </div>
+              </div>
+              <article>
+                Great location, really pleasant and clean rooms, but the thing
+                that makes this such a good place to stay are the staff. All of
+                the people are incredibly helpful and generous with their time
+                and advice.
+              </article>
+            </section>
+          </div>
+          <div class="reviews-item">
+            <div class="reviews-item__img">
+              <img
+                src="./assets/images/kingKongHostel.png"
+                alt="King Kong Hostel"
+              />
+              <div class="reviews-item__img--price">From 40 USD</div>
+            </div>
+            <section class="reviews-item__info">
+              <div class="reviews-wrap-location-marks">
+                <div class="reviews-denotations-container">
+                  <span class="reviews-heading-denotation"
+                    >King Kong Hostel</span
+                  >
+                  <span class="reviews-location-denotation">
+                    Rotterdam, Netherlands
+                  </span>
+                </div>
+                <aside class="reviews-wrap-location-marks__marks">
+                  <button class="reviews-wrap-location-marks__marks--button">
+                    8,9
+                  </button>
+                  <span class="reviews-wrap-location-marks__marks--amount"
+                    >2016 reviews</span
+                  >
+                </aside>
+              </div>
+              <div class="personal-information">
+                <svg>
+                  <use href="./assets/images/spriteOffer.svg#reviews-account" />
+                </svg>
+                <div class="personal-information__reviewers-data">
+                  <span class="personal-information__reviewers-data--name">
+                    Adam Smith</span
+                  >
+                  <span class="personal-information__reviewers-data--country">
+                    <svg
+                      id="#usa-flag"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      width="23"
+                      height="21"
+                      viewBox="0 0 6100 3700"
+                    >
+                      <path fill="#b22234" d="M0 0h7410v3900H0z" />
+                      <path
+                        d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
+                        stroke="#fff"
+                        stroke-width="300"
+                      />
+                      <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
+                      <g fill="#fff">
+                        <g id="d">
+                          <g id="c">
+                            <g id="e">
+                              <g id="b">
+                                <path
+                                  id="a"
+                                  d="m247 90 70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
+                                />
+                                <use xlink:href="#a" y="420" />
+                                <use xlink:href="#a" y="840" />
+                                <use xlink:href="#a" y="1260" />
+                              </g>
+                              <use xlink:href="#a" y="1680" />
+                            </g>
+                            <use xlink:href="#b" x="247" y="210" />
+                          </g>
+                          <use xlink:href="#c" x="494" />
+                        </g>
+                        <use xlink:href="#d" x="988" />
+                        <use xlink:href="#c" x="1976" />
+                        <use xlink:href="#e" x="2470" />
+                      </g>
+                    </svg>
+                    USA</span
+                  >
+                </div>
+              </div>
+              <article>
+                I've been in this hostel for a month and here is the best hostel
+                of all Excellent management of excellent and ethical staff and
+                bedrooms Bathrooms are always clean and excellent Most
+                importantly, those who work here are kind and good-natured.
+              </article>
+            </section>
+          </div>
+          <div class="reviews-item">
+            <div class="reviews-item__img">
+              <img src="./assets/images/rokokoHotel.png" alt="Rokoko Hotel" />
+              <div class="reviews-item__img--price">From 100 USD</div>
+            </div>
+            <section class="reviews-item__info">
+              <div class="reviews-wrap-location-marks">
+                <div class="reviews-denotations-container">
+                  <span class="reviews-heading-denotation">Rokoko Hotel</span>
+                  <span class="reviews-location-denotation"
+                    >Ourika, Marocco</span
+                  >
+                </div>
+                <aside class="reviews-wrap-location-marks__marks">
+                  <button class="reviews-wrap-location-marks__marks--button">
+                    9,1
+                  </button>
+                  <span class="reviews-wrap-location-marks__marks--amount"
+                    >815 reviews</span
+                  >
+                </aside>
+              </div>
+              <div class="personal-information">
+                <svg>
+                  <use href="./assets/images/spriteOffer.svg#reviews-account" />
+                </svg>
+                <div class="personal-information__reviewers-data">
+                  <span class="personal-information__reviewers-data--name"
+                    >Anika Messer</span
+                  >
+                  <span class="personal-information__reviewers-data--country"
+                    ><svg
+                      id="germany-flag"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="21"
+                      viewBox="0 0 640 480"
+                    >
+                      <path fill="#ffce00" d="M0 320h640v160H0z" />
+                      <path d="M0 0h640v160H0z" />
+                      <path fill="#d00" d="M0 160h640v160H0z" />
+                    </svg>
+                    Germany</span
+                  >
+                </div>
+              </div>
+              <article>
+                Efficient, friendly, professional, and appropriately attentive.
+                Great hotel in a great location. Easy access to all the
+                surrounding historical sites. Staff is fantastic. Will
+                definitely stay at this location during my next stay in Marocco.
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sign-up-block-mobile">
+      <div class="container sign-up-container">
+        <section class="sign-up-content">
+          <div>
+            <svg class="sign-up-content__user-icon">
+              <use href="./assets/images/spriteOffer.svg#sign-up" />
+            </svg>
+          </div>
+          <div>
+            <svg class="sign-up-content__logo-mobile">
+              <use href="./assets/images/spriteOffer.svg#logoSignUp" />
+            </svg>
+          </div>
+          <div class="sign-up-content__texting">
+            <span
+              class="sign-declaration-desktop sign-up-content__texting--declaration-desktop"
+            >
+              Sign up and get 20% off your first booking
+            </span>
+            <span class="sign-up-content__texting--declaration-mobile">
+              Sign up in the app and get 20% <br />
+              off your first booking
+            </span>
+            <button>Sign up</button>
+          </div>
+          <a class="sign-up-content__link">Install</a>
+          <svg class="sign-up-content__close-icon">
+            <use href="./assets/images/spriteOffer.svg#close" />
+          </svg>
+        </section>
+      </div>
+    </div>
+
+    <footer class="footer-block">
+      <div class="container footer-block__padding">
+        <div>
+          <img
+            class="footer-block__logo"
+            src="./assets/images/logoFooter.svg"
+            alt="logo"
+          />
+        </div>
+        <div class="footer-links">
+          <ul class="footer-links__list">
+            <li class="footer-links__list--header">About</li>
+            <li class="footer-links__list--item">How Triphouse works</li>
+            <li class="footer-links__list--item">Careers</li>
+            <li class="footer-links__list--item">Privacy</li>
+            <li class="footer-links__list--item">Terms</li>
+          </ul>
+          <ul class="footer-links__list">
+            <li class="footer-links__list--header">Property types</li>
+            <li class="footer-links__list--item">Guest houses</li>
+            <li class="footer-links__list--item">Hotels</li>
+            <li class="footer-links__list--item">Apartments</li>
+            <li class="footer-links__list--item">Villas</li>
+            <li class="footer-links__list--item">Holiday homes</li>
+            <li class="footer-links__list--item">Hostels</li>
+          </ul>
+          <ul class="footer-links__list">
+            <li class="footer-links__list--header">Support</li>
+            <li class="footer-links__list--item">Contact Customer Service</li>
+            <li class="footer-links__list--item">FAQ</li>
+          </ul>
+        </div>
+        <div class="footer-block__footnote">
+          © 2022Triphouse, Inc. All rights reserved
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
