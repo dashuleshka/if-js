@@ -373,6 +373,7 @@ input {
 
 .hotels-block__item {
   display: flex;
+  width: min-content;
   flex-direction: column;
   gap: 22px;
 }
