@@ -1259,3 +1259,88 @@ input {
     display: none;
   }
 }
+
+
+/*Filter block (+js)*/
+.filter-block {
+  gap: 28px;
+  margin-left: auto;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  display: flex;
+  visibility: hidden;
+  width: 260px;
+  border-radius: 8px;
+}
+
+.filter-block-padding {
+  display: flex;
+  flex-direction: column;
+  padding: 23px;
+  gap: 28px;
+}
+
+.block-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 48px;
+}
+
+.block-2 {
+  display: flex;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.block-2 select {
+  width: 99px;
+  height: 30px;
+  font-size: 12px;
+  border-radius: unset;
+  border-color: #3077C6;
+}
+
+.filter-name {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.filter-name span {
+  font-size: 16px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-buttons-items button:focus {
+  border-color: #3077C6;
+  color: #3077C6;
+}
+
+.filter-buttons div {
+  display: flex;
+}
+
+.filter-buttons-items {
+  gap: 5px;
+  align-items: center;
+}
+
+.filter-buttons-items button {
+  border: 1px solid #CECECE;
+  color: #CECECE;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+}
+
+.top-section-form__options-desktop:focus {
+
+}
