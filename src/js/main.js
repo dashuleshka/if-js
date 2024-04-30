@@ -61,3 +61,64 @@ hotelsContainer.innerHTML = `<div class="container hotels-block__guests-loves-pa
         ${createHomesBlock(data)}
         </div>
         </div>`;
+
+//Filters
+const optionsData = {
+  adults: { min: 1, max: 30, value: 1 },
+  children: { min: 0, max: 10, value: 0 },
+  rooms: { min: 1, max: 30, value: 1 },
+};
+
+const filterWrapper = document.getElementById("filter-wrapper");
+
+const createOptionsDiv = () => {
+  const optionsDiv = document.createElement("div");
+  optionsDiv.classList.add("options");
+  optionsDiv.setAttribute("id", "options");
+  optionsDiv.innerHTML = `<div class="options-items" id="options-items"></div>
+      <div class="options-text-div" id="options-text-div"></div>
+      <div class="options-select-items" id="options-select-items"></div>`;
+  filterWrapper.appendChild(optionsDiv);
+  createOptions();
+  filterWrapper.removeEventListener("click", createOptionsDiv);
+};
+
+const createOptions = () => {
+  const optionsItems = document.getElementById("options-items");
+  Object.keys(optionsData).forEach((option) => {
+    const optionsItem = document.createElement("div");
+    optionsItem.classList.add("optionsItem");
+    optionsItem.innerHTML = `
+        <div class="options-description-text">
+          <span>${option}</span>
+        </div>
+        <div class="options-item-buttons">
+          <button class="options-button options-minus-button_js" id="options-minus-button-${option}" type="button" >—</button>
+          <span class="options-counter-number" id="options-counter-number-${option}">${optionsData[option].value}</span>
+          <button class="options-button options-plus-button_js" id="options-plus-button-${option}" type="button">+</button>
+        </div>
+      `;
+    optionsItems.appendChild(optionsItem);
+    document.getElementById(`options-plus-button-${option}`).addEventListener('click',() =>
+        plusOne(option));
+    document.getElementById(`options-minus-button-${option}`);
+  });
+};
+
+const plusOne = (optionName) => {
+  if (optionsData[optionName].value < optionsData[optionName].max) {
+    optionsData[optionName].value++;
+  }
+  if (optionsData[optionName].value === optionsData[optionName].max) {
+    document.getElementById(`options-plus-button-${optionName}`).setAttribute('disabled', 'disabled');
+  }
+  refreshOptionCounter(optionName);
+}
+
+const refreshOptionCounter = (optionName) => {
+  const optionNumber = document.getElementById(
+      `options-counter-number-${optionName}`,
+  );
+  optionNumber.textContent = optionsData[optionName].value;
+}
+filterWrapper.addEventListener("click", createOptionsDiv);
