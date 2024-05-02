@@ -90,7 +90,7 @@ const createOptions = () => {
     optionsItem.classList.add("optionsItem");
     optionsItem.innerHTML = `
         <div class="options-description-text">
-          <span>${option}</span>
+          <span>${capitalizeLetter(option)}</span>
         </div>
         <div class="options-item-buttons">
           <button class="options-button options-minus-button_js" id="options-minus-button-${option}" type="button" >—</button>
@@ -101,7 +101,8 @@ const createOptions = () => {
     optionsItems.appendChild(optionsItem);
     document.getElementById(`options-plus-button-${option}`).addEventListener('click',() =>
         plusOne(option));
-    document.getElementById(`options-minus-button-${option}`);
+    document.getElementById(`options-minus-button-${option}`).addEventListener('click', () =>
+      minusOne(option));
   });
 };
 
@@ -115,10 +116,26 @@ const plusOne = (optionName) => {
   refreshOptionCounter(optionName);
 }
 
+const minusOne = (optionName) => {
+  if (optionsData[optionName].value  > optionsData[optionName].min) {
+    optionsData[optionName].value--;
+  }
+  if (optionsData[optionName].value === optionsData[optionName].min) {
+    document.getElementById(`options-minus-button-${optionName}`).setAttribute('disabled', 'disabled')
+    refreshOptionCounter((optionName));
+  }
+}
+
 const refreshOptionCounter = (optionName) => {
   const optionNumber = document.getElementById(
       `options-counter-number-${optionName}`,
   );
   optionNumber.textContent = optionsData[optionName].value;
 }
+
+const capitalizeLetter = (word) => {
+  return  word[0].toUpperCase() + word.slice(-word.length + 1);
+}
+
 filterWrapper.addEventListener("click", createOptionsDiv);
+

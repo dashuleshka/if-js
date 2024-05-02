@@ -1350,14 +1350,25 @@ input {
     display: flex;
     row-gap: 8px;
     flex-direction: column;
-    width: 295px;
+    width: 259px;
     background-color: #ffffff;
     top: 70px;
   }
 .options-description-text {
   display: flex;
   align-items: center;
+  width: 59px;
 }
+
+.optionsItem {
+  display: flex;
+  gap: 48px;
+}
+
+.options-description-text span {
+  gap: 48px;
+}
+
 .options-text {
   font-size: 12px;
   line-height: 14px;
