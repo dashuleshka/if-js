@@ -1344,7 +1344,7 @@ input {
 
 /*Filters*/
   .options {
-    padding: 8px 22px;
+    padding: 22px 22px;
     position: absolute;
     border-radius: 8px;
     display: flex;
@@ -1366,7 +1366,7 @@ input {
 }
 
 .options-description-text span {
-  gap: 48px;
+  width: 59px;
 }
 
 .options-text {

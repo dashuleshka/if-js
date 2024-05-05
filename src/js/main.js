@@ -69,6 +69,9 @@ const optionsData = {
   rooms: { min: 1, max: 30, value: 1 },
 };
 
+const capitalizeLetter = (word) =>
+  word[0].toUpperCase() + word.slice(-word.length + 1);
+
 const filterWrapper = document.getElementById("filter-wrapper");
 
 const createOptionsDiv = () => {
@@ -99,43 +102,104 @@ const createOptions = () => {
         </div>
       `;
     optionsItems.appendChild(optionsItem);
-    document.getElementById(`options-plus-button-${option}`).addEventListener('click',() =>
-        plusOne(option));
-    document.getElementById(`options-minus-button-${option}`).addEventListener('click', () =>
-      minusOne(option));
+    document
+      .getElementById(`options-plus-button-${option}`)
+      .addEventListener("click", () => plusOne(option));
+    document
+      .getElementById(`options-minus-button-${option}`)
+      .addEventListener("click", () => minusOne(option));
   });
 };
 
 const plusOne = (optionName) => {
   if (optionsData[optionName].value < optionsData[optionName].max) {
     optionsData[optionName].value++;
+
+    if (optionName === 'children') {
+      addChildrenAge();
+    }
   }
+
   if (optionsData[optionName].value === optionsData[optionName].max) {
-    document.getElementById(`options-plus-button-${optionName}`).setAttribute('disabled', 'disabled');
+    document
+      .getElementById(`options-plus-button-${optionName}`)
+      .setAttribute("disabled", "disabled");
   }
+
+  if (optionsData[optionName].value > optionsData[optionName].min) {
+    document
+      .getElementById(`options-minus-button-${optionName}`)
+      .removeAttribute("disabled");
+  }
+
+  if (optionsData.children.value === 1) {
+    addChildrenAgeQuestion();
+  }
+
   refreshOptionCounter(optionName);
-}
+};
 
 const minusOne = (optionName) => {
-  if (optionsData[optionName].value  > optionsData[optionName].min) {
+  if (optionsData[optionName].value > optionsData[optionName].min) {
     optionsData[optionName].value--;
+    if (optionName === 'children') {
+      removeChildrenAge();
+    }
   }
+
   if (optionsData[optionName].value === optionsData[optionName].min) {
-    document.getElementById(`options-minus-button-${optionName}`).setAttribute('disabled', 'disabled')
-    refreshOptionCounter((optionName));
+    document
+      .getElementById(`options-minus-button-${optionName}`)
+      .setAttribute("disabled", "disabled");
   }
-}
+  if (optionsData[optionName].value < optionsData[optionName].max) {
+    document
+      .getElementById(`options-plus-button-${optionName}`)
+      .removeAttribute("disabled");
+  }
+
+  if (optionsData.children.value === 0) {
+    removeChildrenAgeQuestion();
+  }
+
+  refreshOptionCounter(optionName);
+};
 
 const refreshOptionCounter = (optionName) => {
   const optionNumber = document.getElementById(
-      `options-counter-number-${optionName}`,
+    `options-counter-number-${optionName}`,
   );
   optionNumber.textContent = optionsData[optionName].value;
-}
+};
 
-const capitalizeLetter = (word) => {
-  return  word[0].toUpperCase() + word.slice(-word.length + 1);
-}
+const addChildrenAgeQuestion = () => {
+  const optionsTextDiv = document.getElementById("options-text-div");
+  optionsTextDiv.innerHTML = `
+    <span class="options-text" id="options-text">What is the age of the child you’re travelling with?</span>
+  `;
+};
+
+const removeChildrenAgeQuestion = () => {
+  const optionsTextDiv = document.getElementById("options-text-div");
+  optionsTextDiv.innerHTML = ``;
+};
+
+const addChildrenAge = () => {
+  const ageChildrenBlock = document.getElementById("options-select-items");
+  const ageOptions = [...Array(18)]
+    .map((_, index) => `<option value=${index}>${index} years old</option>`)
+    .join("");
+
+  ageChildrenBlock.innerHTML += `<div class="options-select-item"><select id="options-child-age" class="options-child-age-select" 
+  name="options-child-age">${ageOptions}</select></div>`;
+};
+
+const removeChildrenAge = () => {
+  const ageChildrenBlock = document.getElementById("options-select-items");
+  const lastSelectItem = document.querySelector(
+      '.options-select-item:last-child',
+  );
+  ageChildrenBlock.removeChild(lastSelectItem);
+};
 
 filterWrapper.addEventListener("click", createOptionsDiv);
-
