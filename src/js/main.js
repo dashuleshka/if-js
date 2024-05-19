@@ -203,3 +203,4 @@ const removeChildrenAge = () => {
 };
 
 filterWrapper.addEventListener("click", createOptionsDiv);
+
