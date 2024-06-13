@@ -1,41 +1,46 @@
 const hotelsContainer = document.getElementById("hotels-block");
-fetch("https://if-student-api.onrender.com/api/hotels/popular")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`${response.status} - ${response.statusText}`);
-    }
-    return response.json();
-  })
+const createHotelsMarkup = (data) =>
+   data
+    .map(
+      ({ id, name, city, country, imageUrl }) =>
+        `<div id=${id} class="hotels-block__item">
+          <div>
+            <img
+              src=${imageUrl}
+              alt="Hotel image"
+            />
+          </div>
+          <span class="hotels-block__item--typography-subtitle">
+            ${name}
+          </span>
+          <span class="hotels-block__item--location">
+            ${city}, ${country}
+          </span>
+        </div>`,
+    )
+    .join(" ");
 
-  .then((data) => {
-    const hotelsHTML = data
-      .map(
-        ({ id, name, city, country, imageUrl }) =>
-          `<div id=${id} class="hotels-block__item">
-              <div>
-                <img
-                  src=${imageUrl}
-                  alt="Hotel image"
-                />
-              </div>
-              <span class="hotels-block__item--typography-subtitle">
-                ${name}</span
-              >
-              <span class="hotels-block__item--location"
-                >${city}, ${country}</span
-              >
-            </div>`,
-      )
-      .join(" ");
+async function fetchFunc() {
+  return await fetch("https://if-student-api.onrender.com/api/hotels/popular")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+      })
 
-    hotelsContainer.innerHTML = `<div class="container hotels-block__guests-loves-padding">
+      .then((data) => {
+        hotelsContainer.innerHTML = `<div class="container hotels-block__guests-loves-padding">
         <h2 class="hotels-block__heading">Homes guests loves</h2>
         <div class="hotels-block__content">
-        ${hotelsHTML}
+          ${createHotelsMarkup(data)}
         </div>
         </div>`;
-  })
-  .catch((err) => console.log(err.message));
+      })
+      .catch((err) => console.log(err.message));
+}
+
+fetchFunc();
 
 //Filters
 const optionsData = {

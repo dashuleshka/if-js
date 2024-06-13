@@ -171,6 +171,7 @@ input {
 
 .top-section-form__options-desktop {
   width: 25%;
+  position: relative;
 }
 
 .top-section-form__date-mobile {
@@ -1346,6 +1347,7 @@ input {
   .options {
     padding: 22px 22px;
     position: absolute;
+    right: 0;
     border-radius: 8px;
     display: flex;
     row-gap: 8px;
@@ -1420,4 +1422,9 @@ input {
   flex-wrap: wrap;
   row-gap: 4px;
   column-gap: 10px;
+}
+
+.hotels-block__item img {
+  height: 296px;
+  width: 296px;
 }
