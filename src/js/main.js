@@ -1,6 +1,6 @@
-const hotelsContainer = document.getElementById("hotels-block");
+const hotelsContainer = document.getElementById("homes-block__content");
 const createHotelsMarkup = (data) =>
-   data
+  data
     .map(
       ({ id, name, city, country, imageUrl }) =>
         `<div id=${id} class="hotels-block__item">
@@ -20,27 +20,20 @@ const createHotelsMarkup = (data) =>
     )
     .join(" ");
 
-async function fetchFunc() {
-  return await fetch("https://if-student-api.onrender.com/api/hotels/popular")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`${response.status} - ${response.statusText}`);
-        }
-        return response.json();
-      })
+const getPopularHotels = async () => {
+  try {
+    const response = await fetch(
+      "https://if-student-api.onrender.com/api/hotels/popular",
+    );
+    const data = await response.json();
 
-      .then((data) => {
-        hotelsContainer.innerHTML = `<div class="container hotels-block__guests-loves-padding">
-        <h2 class="hotels-block__heading">Homes guests loves</h2>
-        <div class="hotels-block__content">
-          ${createHotelsMarkup(data)}
-        </div>
-        </div>`;
-      })
-      .catch((err) => console.log(err.message));
-}
+    hotelsContainer.innerHTML = createHotelsMarkup(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
-fetchFunc();
+getPopularHotels();
 
 //Filters
 const optionsData = {
