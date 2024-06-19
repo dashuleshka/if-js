@@ -39,7 +39,7 @@
           Discover stays<br />
           to live, work or just relax
         </h1>
-        <form action="" class="main-block__top-section-form">
+        <form id="my-form" action="" class="main-block__top-section-form">
           <div class="top-section-form__destination">
             <span class="top-section-form__destination--loop-icon">
               <img src="./assets/images/search.svg" alt="searcher" />
@@ -58,7 +58,7 @@
             <input
               class="form-input input-destination-mobile"
               id="country-mobile"
-              type="text"
+              type="submit"
               name="destination"
               autocomplete="off"
               placeholder="Your destination or hotel name"
@@ -194,7 +194,7 @@
               />
             </div>
           </div>
-          <button class="top-section-form__button">Search</button>
+          <button type="submit" id="form-button" class="top-section-form__button">Search</button>
         </form>
         <div class="main-block__game-stores">
           <a
@@ -213,6 +213,15 @@
         </div>
       </div>
     </div>
+
+    <div id="available-hotels" class="available-hotels__block hotels-block">
+      <div class="container hotels-block__guests-loves-padding">
+        <h2 class="hotels-block__heading">Available hotels</h2>
+        <div id="available-hotels__block--content" class="hotels-block__content">
+        </div>
+      </div>
+    </div>
+
 
     <div class="container offer-block">
       <h2 class="offer-block__heading">What do we offer</h2>

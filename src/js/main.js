@@ -35,6 +35,45 @@ const getPopularHotels = async () => {
 
 getPopularHotels();
 
+// GET-filter
+const form = document.getElementById('my-form');
+const searchInput = document.getElementById("country-desktop");
+const availableHotels = document.getElementById("available-hotels__block--content");
+
+
+
+const searchPopularHotels = (searchVal) => {
+  fetch(`https://if-student-api.onrender.com/api/hotels`).then((response) => {
+    return  response.json();
+  }).then(data => {
+
+    data.filter(({name, city, country}) => {
+      if (
+        country.includes(searchVal) ||
+        city.includes(searchVal) ||
+        name.includes(searchVal)
+      ) {
+        return data;
+      }
+    })
+  })
+};
+
+searchPopularHotels(searchInput.value);
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  fetch(`https://if-student-api.onrender.com/api/hotels?search=${searchInput.value}`).then(response => {
+    return response.json();
+  }).then(data => {
+    availableHotels.innerHTML = createHotelsMarkup(data);
+    console.log(data);
+  })
+})
+
+
+
+
 //Filters
 const optionsData = {
   adults: { min: 1, max: 30, value: 1 },
