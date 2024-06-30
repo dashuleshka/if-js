@@ -39,31 +39,34 @@ getPopularHotels();
 const form = document.getElementById('my-form');
 const searchInput = document.getElementById("country-desktop");
 const availableHotels = document.getElementById("available-hotels__block--content");
+const url = new URL('https://if-student-api.onrender.com/api/hotels');
 
-
-
-const searchPopularHotels = (searchVal) => {
-  fetch(`https://if-student-api.onrender.com/api/hotels`).then((response) => {
-    return  response.json();
-  }).then(data => {
-
+const searchPopularHotels = async (searchVal) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
     data.filter(({name, city, country}) => {
       if (
-        country.includes(searchVal) ||
-        city.includes(searchVal) ||
-        name.includes(searchVal)
+          country.includes(searchVal) ||
+          city.includes(searchVal) ||
+          name.includes(searchVal)
       ) {
         return data;
       }
     })
-  })
-};
+  }
+  catch (error) {
+    console.log(error.message);
+  }
+}
 
 searchPopularHotels(searchInput.value);
 
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  fetch(`https://if-student-api.onrender.com/api/hotels?search=${searchInput.value}`).then(response => {
+  url.searchParams.set('search', `${searchInput.value}`);
+  fetch(url).then(response => {
     return response.json();
   }).then(data => {
     availableHotels.innerHTML = createHotelsMarkup(data);
