@@ -1428,3 +1428,7 @@ input {
   height: 296px;
   width: 296px;
 }
+
+.available-hotels__block {
+  display: none;
+}

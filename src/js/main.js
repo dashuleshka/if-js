@@ -36,46 +36,57 @@ const getPopularHotels = async () => {
 getPopularHotels();
 
 // GET-filter
-const form = document.getElementById('my-form');
+const form = document.getElementById("my-form");
 const searchInput = document.getElementById("country-desktop");
-const availableHotels = document.getElementById("available-hotels__block--content");
-const url = new URL('https://if-student-api.onrender.com/api/hotels');
+const availableHotels = document.getElementById(
+  "available-hotels__block--content",
+);
+const availableHotelsBlock = document.getElementById("available-hotels");
+const url = new URL("https://if-student-api.onrender.com/api/hotels");
 
 const searchPopularHotels = async (searchVal) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    data.filter(({name, city, country}) => {
+    data.filter(({ name, city, country }) => {
       if (
-          country.includes(searchVal) ||
-          city.includes(searchVal) ||
-          name.includes(searchVal)
+        country.includes(searchVal) ||
+        city.includes(searchVal) ||
+        name.includes(searchVal)
       ) {
         return data;
       }
-    })
-  }
-  catch (error) {
+    });
+  } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 searchPopularHotels(searchInput.value);
 
-
-form.addEventListener('submit', (event) => {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
-  url.searchParams.set('search', `${searchInput.value}`);
-  fetch(url).then(response => {
-    return response.json();
-  }).then(data => {
-    availableHotels.innerHTML = createHotelsMarkup(data);
-    console.log(data);
-  })
-})
+  if (searchInput.value.length === 0) {
+    return null;
+  }
 
-
-
+  url.searchParams.set("search", `${searchInput.value}`);
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      availableHotels.innerHTML = createHotelsMarkup(data);
+      console.log(data);
+      if (data.length === 0) {
+        return null;
+      }
+      availableHotelsBlock.style.display = "block";
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+});
 
 //Filters
 const optionsData = {
