@@ -67,6 +67,7 @@ searchPopularHotels(searchInput.value);
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   if (searchInput.value.length === 0) {
+    availableHotelsBlock.style.display = "none";
     return null;
   }
 
@@ -78,7 +79,9 @@ form.addEventListener("submit", (event) => {
     .then((data) => {
       availableHotels.innerHTML = createHotelsMarkup(data);
       console.log(data);
+
       if (data.length === 0) {
+        availableHotelsBlock.style.display = "none";
         return null;
       }
       availableHotelsBlock.style.display = "block";
