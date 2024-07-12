@@ -50,29 +50,28 @@ searchInput.addEventListener("input", () => {
   formButton.disabled = !searchInput.value.length;
 })
 
-const searchPopularHotels = () => {
-  form.addEventListener("submit", (event) => {
+const searchPopularHotels = async () => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     url.searchParams.set("search", `${searchInput.value}`);
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        availableHotels.innerHTML = createHotelsMarkup(data);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      availableHotels.innerHTML = createHotelsMarkup(data);
 
-        if (!data.length) {
-          availableHotelsBlock.classList.remove('hidden-class')
-          noAvailableTemp.classList.replace('hidden-class', 'visible-class');
-          return null;
-        }
+      if (!data.length) {
+        availableHotelsBlock.classList.remove('hidden-class');
+        noAvailableTemp.classList.replace('hidden-class', 'visible-class');
+      }
+      else {
         noAvailableTemp.classList.add('hidden-class');
         availableHotelsBlock.classList.toggle('hidden-class');
-      })
-      .catch((error) => {
-        alert(`Error fetching data: ${error.message}`);
-      });
+      }
+    }
+    catch (error) {
+      alert(`Error fetching data: ${error.message}`);
+    }
   });
 };
 
