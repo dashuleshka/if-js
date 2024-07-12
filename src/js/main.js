@@ -23,16 +23,27 @@ const createHotelsMarkup = (data) =>
     .join(" ");
 
 const getPopularHotels = async () => {
-  try {
-    const response = await fetch(
-      "https://if-student-api.onrender.com/api/hotels/popular",
-    );
-    const data = await response.json();
+  if (!sessionStorage.getItem('hotel')) {
+    try {
+      const response = await fetch(
+          "https://if-student-api.onrender.com/api/hotels/popular",
+      );
+      const data = await response.json();
+      hotelsContainer.innerHTML = createHotelsMarkup(data);
 
-    hotelsContainer.innerHTML = createHotelsMarkup(data);
-  } catch (error) {
-    console.log(error.message);
+      const dataString = JSON.stringify(data);
+      sessionStorage.setItem("hotel", dataString); //writing data in sessionStorage
+    } catch (error) {
+      console.log(error.message);
+    }
   }
+
+  else {
+    const dataStringFromStorage = sessionStorage.getItem("hotel");
+    const dataFromStorage = JSON.parse(dataStringFromStorage);
+    hotelsContainer.innerHTML = createHotelsMarkup(dataFromStorage);
+  }
+
 };
 
 getPopularHotels();
