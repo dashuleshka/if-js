@@ -159,6 +159,11 @@ input {
   cursor: pointer;
 }
 
+.top-section-form__button:disabled {
+  background-color: #666f79;;
+  cursor: not-allowed;
+}
+
 .top-section-form__destination {
   width: 38%;
   position: relative;
@@ -1429,6 +1434,17 @@ input {
   width: 296px;
 }
 
-.available-hotels__block {
+/*.available-hotels__block {*/
+/*  display: none;*/
+/*}*/
+
+/**/
+.hidden-class {
   display: none;
+}
+
+#no-available {
+  text-align: center;
+  font-size: 55px;
+  color: var(--black-color);
 }

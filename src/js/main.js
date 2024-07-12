@@ -1,4 +1,6 @@
 const hotelsContainer = document.getElementById("homes-block__content");
+const availableHotels = document.getElementById("available-hotels__block--content");
+const availableHotelsBlock = document.getElementById("available-hotels");
 const createHotelsMarkup = (data) =>
   data
     .map(
@@ -38,58 +40,43 @@ getPopularHotels();
 // GET-filter
 const form = document.getElementById("my-form");
 const searchInput = document.getElementById("country-desktop");
-const availableHotels = document.getElementById(
-  "available-hotels__block--content",
-);
-const availableHotelsBlock = document.getElementById("available-hotels");
+const formButton = document.getElementById("form-button");
 const url = new URL("https://if-student-api.onrender.com/api/hotels");
 
-const searchPopularHotels = async (searchVal) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    data.filter(({ name, city, country }) => {
-      if (
-        country.includes(searchVal) ||
-        city.includes(searchVal) ||
-        name.includes(searchVal)
-      ) {
-        return data;
-      }
-    });
-  } catch (error) {
-    console.log(error.message);
-  }
+const noAvailableTemp = document.getElementById('no-available');
+
+formButton.disabled = true;
+searchInput.addEventListener("input", () => {
+  formButton.disabled = !searchInput.value.length;
+})
+
+const searchPopularHotels = () => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    url.searchParams.set("search", `${searchInput.value}`);
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        availableHotels.innerHTML = createHotelsMarkup(data);
+
+        if (!data.length) {
+          availableHotelsBlock.classList.remove('hidden-class')
+          noAvailableTemp.classList.replace('hidden-class', 'visible-class');
+          return null;
+        }
+        noAvailableTemp.classList.add('hidden-class');
+        availableHotelsBlock.classList.toggle('hidden-class');
+      })
+      .catch((error) => {
+        alert(`Error fetching data: ${error.message}`);
+      });
+  });
 };
 
-searchPopularHotels(searchInput.value);
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  if (searchInput.value.length === 0) {
-    availableHotelsBlock.style.display = "none";
-    return null;
-  }
-
-  url.searchParams.set("search", `${searchInput.value}`);
-  fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      availableHotels.innerHTML = createHotelsMarkup(data);
-      console.log(data);
-
-      if (data.length === 0) {
-        availableHotelsBlock.style.display = "none";
-        return null;
-      }
-      availableHotelsBlock.style.display = "block";
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-});
+searchPopularHotels();
 
 //Filters
 const optionsData = {
