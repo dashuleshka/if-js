@@ -1,6 +1,7 @@
 const hotelsContainer = document.getElementById("homes-block__content");
 const availableHotels = document.getElementById("available-hotels__block--content");
 const availableHotelsBlock = document.getElementById("available-hotels");
+
 const createHotelsMarkup = (data) =>
   data
     .map(
@@ -22,30 +23,57 @@ const createHotelsMarkup = (data) =>
     )
     .join(" ");
 
+function bubbleStringSort(array, field) {
+  for (let i = 0; i < array.length - 1; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j][field].localeCompare(array[j + 1][field]) > 0) {
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
+    }
+  }
+  return array;
+}
+
+// const getPopularHotels = async () => {
+//   if (!sessionStorage.getItem('hotel')) {
+//     try {
+//       const response = await fetch("https://if-student-api.onrender.com/api/hotels/popular",
+//       );
+//       const data = await response.json();
+//       const dataSort = bubbleStringSort(data, 'name');
+//       hotelsContainer.innerHTML = createHotelsMarkup(dataSort);
+//
+//       const dataString = JSON.stringify(dataSort);
+//       sessionStorage.setItem("hotel", dataString); //writing data in sessionStorage
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   }
+//   else {
+//     const dataStringFromStorage = sessionStorage.getItem("hotel");
+//     const dataFromStorage = JSON.parse(dataStringFromStorage);
+//     hotelsContainer.innerHTML = createHotelsMarkup(dataFromStorage);
+//   }
+//
+// };
 const getPopularHotels = async () => {
   if (!sessionStorage.getItem('hotel')) {
     try {
-      const response = await fetch(
-          "https://if-student-api.onrender.com/api/hotels/popular",
-      );
+      const response = await fetch("https://if-student-api.onrender.com/api/hotels/popular");
       const data = await response.json();
-      hotelsContainer.innerHTML = createHotelsMarkup(data);
+      const dataSort = bubbleStringSort(data, 'name');
+      hotelsContainer.innerHTML = createHotelsMarkup(dataSort);
 
-      const dataString = JSON.stringify(data);
+      const dataString = JSON.stringify(dataSort);
       sessionStorage.setItem("hotel", dataString); //writing data in sessionStorage
     } catch (error) {
       console.log(error.message);
     }
-  }
-
-  else {
-    const dataStringFromStorage = sessionStorage.getItem("hotel");
-    const dataFromStorage = JSON.parse(dataStringFromStorage);
-    hotelsContainer.innerHTML = createHotelsMarkup(dataFromStorage);
-  }
-
+  } else {
+    const dataSort = JSON.parse(sessionStorage.getItem("hotel"));
+    hotelsContainer.innerHTML = createHotelsMarkup(dataSort);
+   }
 };
-
 getPopularHotels();
 
 // GET-filter
@@ -229,3 +257,4 @@ const removeChildrenAge = () => {
 };
 
 filterWrapper.addEventListener("click", createOptionsDiv);
+
