@@ -1,5 +1,7 @@
 const hotelsContainer = document.getElementById("homes-block__content");
-const availableHotels = document.getElementById("available-hotels__block--content");
+const availableHotels = document.getElementById(
+  "available-hotels__block--content",
+);
 const availableHotelsBlock = document.getElementById("available-hotels");
 
 const createHotelsMarkup = (data) =>
@@ -23,16 +25,6 @@ const createHotelsMarkup = (data) =>
     )
     .join(" ");
 
-function bubbleStringSort(array, field) {
-  for (let i = 0; i < array.length - 1; i++) {
-    for (let j = 0; j < array.length - i - 1; j++) {
-      if (array[j][field].localeCompare(array[j + 1][field]) > 0) {
-        [array[j], array[j + 1]] = [array[j + 1], array[j]];
-      }
-    }
-  }
-  return array;
-}
 
 // const getPopularHotels = async () => {
 //   if (!sessionStorage.getItem('hotel')) {
@@ -56,12 +48,15 @@ function bubbleStringSort(array, field) {
 //   }
 //
 // };
+
 const getPopularHotels = async () => {
-  if (!sessionStorage.getItem('hotel')) {
+  if (!sessionStorage.getItem("hotel")) {
     try {
-      const response = await fetch("https://if-student-api.onrender.com/api/hotels/popular");
+      const response = await fetch(
+        "https://if-student-api.onrender.com/api/hotels/popular",
+      );
       const data = await response.json();
-      const dataSort = bubbleStringSort(data, 'name');
+      const dataSort = bubbleStringSort(data, "name");
       hotelsContainer.innerHTML = createHotelsMarkup(dataSort);
 
       const dataString = JSON.stringify(dataSort);
@@ -72,8 +67,9 @@ const getPopularHotels = async () => {
   } else {
     const dataSort = JSON.parse(sessionStorage.getItem("hotel"));
     hotelsContainer.innerHTML = createHotelsMarkup(dataSort);
-   }
+  }
 };
+
 getPopularHotels();
 
 // GET-filter
@@ -82,38 +78,58 @@ const searchInput = document.getElementById("country-desktop");
 const formButton = document.getElementById("form-button");
 const url = new URL("https://if-student-api.onrender.com/api/hotels");
 
-const noAvailableTemp = document.getElementById('no-available');
+const noAvailableTemp = document.getElementById("no-available");
 
 formButton.disabled = true;
 searchInput.addEventListener("input", () => {
   formButton.disabled = !searchInput.value.length;
-})
+});
+
+function findChildrenAges() {
+  let arr = [];
+  document.querySelectorAll("#options-child-age").forEach((dataAge) => {
+    arr.push(dataAge.value);
+
+  })
+  return arr.join(',');
+}
+
+function bubbleStringSort(array, field) {
+  for (let i = 0; i < array.length - 1; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j][field].localeCompare(array[j + 1][field]) > 0) {
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
+    }
+  }
+  return array;
+}
 
 const searchPopularHotels = async () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-
     url.searchParams.set("search", `${searchInput.value}`);
+    url.searchParams.set("adults", `${optionsData["adults"].value}`);
+    url.searchParams.set("children", `${findChildrenAges()}`);
+    url.searchParams.set("rooms", `${optionsData["rooms"].value}`);
+
     try {
-      const response = await fetch(url);
+      const response = await fetch(decodeURIComponent(url));
       const data = await response.json();
       availableHotels.innerHTML = createHotelsMarkup(data);
 
       if (!data.length) {
-        availableHotelsBlock.classList.remove('hidden-class');
-        noAvailableTemp.classList.replace('hidden-class', 'visible-class');
+        availableHotelsBlock.classList.remove("hidden-class");
+        noAvailableTemp.classList.replace("hidden-class", "visible-class");
+      } else {
+        noAvailableTemp.classList.add("hidden-class");
+        availableHotelsBlock.classList.remove("hidden-class");
       }
-      else {
-        noAvailableTemp.classList.add('hidden-class');
-        availableHotelsBlock.classList.toggle('hidden-class');
-      }
-    }
-    catch (error) {
+    } catch (error) {
       alert(`Error fetching data: ${error.message}`);
     }
   });
-};
-
+}
 searchPopularHotels();
 
 //Filters
@@ -257,4 +273,3 @@ const removeChildrenAge = () => {
 };
 
 filterWrapper.addEventListener("click", createOptionsDiv);
-
