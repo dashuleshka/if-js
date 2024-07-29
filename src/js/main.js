@@ -89,8 +89,8 @@ function findChildrenAges() {
   let arr = [];
   document.querySelectorAll("#options-child-age").forEach((dataAge) => {
     arr.push(dataAge.value);
-
   })
+
   return arr.join(',');
 }
 
@@ -102,6 +102,7 @@ function bubbleStringSort(array, field) {
       }
     }
   }
+
   return array;
 }
 
